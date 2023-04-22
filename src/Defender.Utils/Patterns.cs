@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
     #region Singleton
+
     public class Singleton<Class> where Class : class, new()
     {
         private static Class instance;
 
-        private static object syncRoot = new Object();
+        private static object syncRoot = new object();
 
         protected Singleton() { }
 
         public static Class GetInstance()
         {
-            lock (syncRoot)
+            if (instance == null)
             {
-                if (instance == null)
-                    instance = new Class();
+                lock (syncRoot)
+                {
+                    if (instance == null)
+                        instance = new Class();
+                }
             }
             return instance;
         }
@@ -28,20 +32,24 @@ namespace DefenderUniversalLibrary
             instance = @class;
         }
     }
+
     #endregion
 
     #region Repository
-    public interface IRepository<T> where T : class                //use pattern repository for each entity
+
+    public interface IRepository<KeyType, T> where T : class                //use pattern repository for each entity
     {
         List<T> GetAll();
-        T Get(int id);
-        void Create(T item);
-        void Update(T item);
-        void Delete(int id);
+        T Get(KeyType id);
+        T Create(T item);
+        T Update(T item);
+        KeyType Delete(KeyType id);
     }
+
     #endregion
 
     #region Command
+
     public class RelayCommand<T> : ICommand        //command with parameter
     {
         private Action<T> _execute;
@@ -87,5 +95,6 @@ namespace DefenderUniversalLibrary
             _execute?.Invoke();
         }
     }
+
     #endregion
 }

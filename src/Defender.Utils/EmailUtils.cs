@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public class Services_Lib
+    [Obsolete]
+    public class EmailUtils
     {
-        public static async Task SendEmail(string emailFrom, string emailPassword, string emailTo, string title, string displayName, string htmlBody = "")
+        public async Task SendEmail(
+            string emailFrom,
+            string emailPassword,
+            string emailTo,
+            string title,
+            string displayName,
+            string htmlBody = "")
         {
             MailAddress from = new MailAddress(emailFrom, displayName);
             MailAddress to = new MailAddress(emailTo);

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public static class Validations_Lib
+    public class ValidationUtils
     {
-        public static List<ValidationResult> ValidateObject(object obj)
+        public List<ValidationResult> ValidateObject(object obj)
         {
             var results = new List<ValidationResult>();
             var context = new ValidationContext(obj);
@@ -18,7 +16,7 @@ namespace DefenderUniversalLibrary
             return null;
         }
 
-        public static bool IsValidObject(object obj)
+        public bool IsValidObject(object obj)
         {
             if (ValidateObject(obj) == null)
             {

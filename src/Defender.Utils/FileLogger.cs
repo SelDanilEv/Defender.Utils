@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public class Logger : ICloneable
+    public class FileLogger : ICloneable
     {
         private string _pathLogDirectory = @"../../../../Logger/";
         private string _fileName = "file";
@@ -65,11 +63,11 @@ namespace DefenderUniversalLibrary
         }
 
         #region constructors
-        public Logger()
+        public FileLogger()
         {
         }
 
-        public Logger(string pathLogDirectory, string fileName)
+        public FileLogger(string pathLogDirectory, string fileName)
         {
             _pathLogDirectory = pathLogDirectory;
             _fileName = fileName;
@@ -79,7 +77,7 @@ namespace DefenderUniversalLibrary
 
         public object Clone()
         {
-            return new Logger(_pathLogDirectory, _fileName);
+            return new FileLogger(_pathLogDirectory, _fileName);
         }
 
         public void SetLocation(string path)
@@ -138,16 +136,16 @@ namespace DefenderUniversalLibrary
         {
             CreateDirectoryAndFile();
             while (!IsFileExist()) { Thread.Sleep(100); }
-            await writeAsync(new LogMessageBuilder().AddDate().AddTime().AddSeparator().AddText(message).Build().message);
+            await WriteAsync(new LogMessageBuilder().AddDate().AddTime().AddSeparator().AddText(message).Build().message);
         }
 
-        private async Task writeAsync(string text)
+        private async Task WriteAsync(string text)
         {
             if (IsFileExist())
             {
                 var file = new FileInfo(_pathLogFile);
 
-                using (var stream = new StreamWriter(file.FullName,true,Encoding.UTF8))
+                using (var stream = new StreamWriter(file.FullName, true, Encoding.UTF8))
                 {
                     await stream.WriteAsync(text);
                 }

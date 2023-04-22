@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public static class String_Lib
+    public class StringUtils
     {
-        public static string GetRandomString(int lenght)
+        public string GetRandomString(int lenght)
         {
             //97-122 a-z
             //65-90 A-Z

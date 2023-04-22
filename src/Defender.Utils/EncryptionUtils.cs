@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public class Encryption_Lib
+    public class EncryptionUtils
     {
-        public static string GetHashSHA1(string text)
+        public string GetHashSHA1(string text, string salt = "")
         {
             using (SHA1Managed sha1 = new SHA1Managed())
             {
-                byte[] hash = Encoding.UTF8.GetBytes(text);
+                byte[] hash = Encoding.UTF8.GetBytes($"{salt}_{text}");
                 byte[] generatedHash = sha1.ComputeHash(hash);
                 string generatedHashString = Convert.ToBase64String(generatedHash);
 

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public static class Math_Lib
+    public class MathUtils
     {
         public static double RoundUp(double number, int digits)
         {

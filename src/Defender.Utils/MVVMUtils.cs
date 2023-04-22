@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
-namespace DefenderUniversalLibrary
+namespace Defender.Utils
 {
-    public class MVVM_Lib
+    public class MVVMUtils
     {
         public class ViewModelBase : INotifyPropertyChanged
         {
