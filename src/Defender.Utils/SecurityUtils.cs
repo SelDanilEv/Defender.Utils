@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -7,12 +6,6 @@ namespace Defender.Utils
 {
     public class SecurityUtils
     {
-        public static SymmetricSecurityKey GetSymmetricSecurityKey(string key)
-        {
-            return new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(key));
-        }
-
         public static string Encrypt(string key, string toEncrypt, bool useHashing = true)
         {
             byte[] resultArray = null;
