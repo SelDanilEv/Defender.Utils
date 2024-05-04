@@ -13,7 +13,7 @@ namespace Defender.Utils
             {
                 return results;
             }
-            return null;
+            return results;
         }
 
         public bool IsValidObject(object obj)
